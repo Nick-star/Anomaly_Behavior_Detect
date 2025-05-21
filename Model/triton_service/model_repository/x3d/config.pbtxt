@@ -1,0 +1,19 @@
+name: "x3d"
+platform: "pytorch_libtorch"
+max_batch_size: 4
+
+input [
+  {
+    name: "INPUT__0"
+    data_type: TYPE_FP32
+    dims: [3, 16, 320, 320]
+  }
+]
+
+output [
+  {
+    name: "FEATURES"
+    data_type: TYPE_FP32
+    dims: [192, 16, 10, 10]
+  }
+]

@@ -1,0 +1,48 @@
+name: "ensemble"
+platform: "ensemble"
+max_batch_size: 4
+
+input [
+  {
+    name: "INPUT__0"
+    data_type: TYPE_FP32
+    dims: [3, 16, 320, 320]
+  }
+]
+
+output [
+  {
+    name: "ANOMALY_SCORE"
+    data_type: TYPE_FP32
+    dims: [1]
+  }
+]
+
+ensemble_scheduling {
+  step [
+    {
+      model_name: "x3d"
+      model_version: -1
+      input_map {
+        key: "INPUT__0"
+        value: "INPUT__0"
+      }
+      output_map {
+        key: "FEATURES"
+        value: "FEATURES"
+      }
+    },
+    {
+      model_name: "stead"
+      model_version: -1
+      input_map {
+        key: "FEATURES"
+        value: "FEATURES"
+      }
+      output_map {
+        key: "ANOMALY_SCORE"
+        value: "ANOMALY_SCORE"
+      }
+    }
+  ]
+}

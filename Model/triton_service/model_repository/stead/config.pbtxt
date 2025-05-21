@@ -1,0 +1,19 @@
+name: "stead"
+platform: "pytorch_libtorch"
+max_batch_size: 4
+
+input [
+  {
+    name: "FEATURES"
+    data_type: TYPE_FP32
+    dims: [192, 16, 10, 10]
+  }
+]
+
+output [
+  {
+    name: "ANOMALY_SCORE"
+    data_type: TYPE_FP32
+    dims: [1]
+  }
+]

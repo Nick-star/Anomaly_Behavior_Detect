@@ -18,10 +18,8 @@ async def create_db_and_tables():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create database tables
     await create_db_and_tables()
 
-    # Initialize Redis cache
     redis = aioredis.from_url(
         settings.REDIS_URL, encoding="utf8", decode_responses=False
     )
